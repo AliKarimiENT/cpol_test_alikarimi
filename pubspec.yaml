@@ -35,6 +35,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_svg: ^1.1.6
 
 dev_dependencies:
   flutter_test:
@@ -59,18 +60,18 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-   assets:
-     - assets/svgs/
+  assets:
+    - assets/svgs/
 
-   fonts:
-     - family: Yekan
-       fonts:
-         - asset: fonts/B YEKAN_YASDL.COM.TTF
+  fonts:
+    - family: Yekan
+      fonts:
+        - asset: fonts/B YEKAN_YASDL.COM.TTF
 
-     - family: IranSans
-       fonts:
-         - asset: fonts/IRANSans.ttf
-         - asset: fonts/IRANSans_Bold.ttf
-         - asset: fonts/IRANSans_Light.ttf
-         - asset: fonts/IRANSans_Medium.ttf
-         - asset: fonts/IRANSans_UltraLight.ttf
+    - family: IranSans
+      fonts:
+        - asset: fonts/IRANSans.ttf
+        - asset: fonts/IRANSans_Bold.ttf
+        - asset: fonts/IRANSans_Light.ttf
+        - asset: fonts/IRANSans_Medium.ttf
+        - asset: fonts/IRANSans_UltraLight.ttf
