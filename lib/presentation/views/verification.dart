@@ -28,7 +28,6 @@ class _VerificationPageState extends State<VerificationPage>
 
   late String phoneNumber;
 
-
   @override
   void initState() {
     super.initState();
@@ -52,57 +51,60 @@ class _VerificationPageState extends State<VerificationPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: buildFloatingButton(context),
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: true,
-              fillOverscroll: true,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 48),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: SvgPicture.asset(
-                      'assets/svgs/defense.svg',
-                      color: Theme.of(context).primaryColor,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: buildFloatingButton(context),
+        body: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: true,
+                fillOverscroll: true,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 48),
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: SvgPicture.asset(
+                        'assets/svgs/defense.svg',
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 32),
-                  const Text(
-                    'خوش آمدید',
-                    style: TextStyle(
-                      fontFamily: 'IranSans',
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700,
+                    const SizedBox(height: 32),
+                    const Text(
+                      'خوش آمدید',
+                      style: TextStyle(
+                        fontFamily: 'IranSans',
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Flexible(
-                    fit: FlexFit.loose,
-                    flex: 1,
-                    child: PageView(
-                      controller: pageController,
-                      pageSnapping: true,
-                      allowImplicitScrolling: false,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        mobileEntryView(context),
-                        codeVerificationView()
-                      ],
+                    const SizedBox(height: 16),
+                    Flexible(
+                      fit: FlexFit.loose,
+                      flex: 1,
+                      child: PageView(
+                        controller: pageController,
+                        pageSnapping: true,
+                        allowImplicitScrolling: false,
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: [
+                          mobileEntryView(context),
+                          codeVerificationView()
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            )
-          ],
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -328,7 +330,7 @@ class _VerificationPageState extends State<VerificationPage>
       color: Theme.of(context).primaryColor,
       onPressed: () {
         print('Current page num is ${pageController.page}');
-        if(pageController.page == 0){
+        if (pageController.page == 0) {
           if (_phoneFormKey.currentState!.validate()) {
             pageController.nextPage(
               duration: const Duration(milliseconds: 200),
@@ -340,7 +342,6 @@ class _VerificationPageState extends State<VerificationPage>
                     : animationController.value);
           }
         }
-
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
