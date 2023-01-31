@@ -1,11 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math' as math;
 
 import '../widgets/splash_logo.dart';
 
-class SplashPage extends StatelessWidget {
+
+late SharedPreferences pref;
+class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      SharedPreferences.getInstance().then((value) async{
+        pref = value;
+        print('build completed');
+        await Future.delayed(Duration(milliseconds: 1500));
+        bool hasToken = checkHasToken();
+        if(!hasToken){
+          Navigator.pushNamed(context, 'verification');
+        }else{
+
+        }
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +48,19 @@ class SplashPage extends StatelessWidget {
             child: SvgPicture.asset('assets/svgs/union.svg'),
           ),
           Positioned(
-            top: height/3,
+            top: height / 3,
             right: -30,
-            child: SvgPicture.asset('assets/svgs/ellipse.svg',width: 100,color: Colors.white.withOpacity(0.21),),
+            child: SvgPicture.asset(
+              'assets/svgs/ellipse.svg',
+              width: 100,
+              color: Colors.white.withOpacity(0.21),
+            ),
           ),
           Positioned(
-            top: height/10,
+            top: height / 10,
             left: 0,
-            child: SvgPicture.asset('assets/svgs/curvedRectangle.svg',width: 150),
+            child:
+                SvgPicture.asset('assets/svgs/curvedRectangle.svg', width: 150),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -59,5 +91,14 @@ class SplashPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  bool checkHasToken() {
+    var result = pref.getString('token');
+    if (result == null || result == '') {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
