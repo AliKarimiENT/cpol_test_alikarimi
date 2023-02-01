@@ -3,7 +3,6 @@ import 'theme.dart';
 import 'presentation/views/profile.dart';
 import 'presentation/views/splash.dart';
 import 'presentation/views/verification.dart';
-import 'presentation/views/welcome.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +21,6 @@ class MyApp extends StatelessWidget {
         'profile': (context) => const ProfilePage(),
         'splash': (context) => const SplashPage(),
         'verification': (context) => const VerificationPage(),
-        'welcome': (context) => const WelcomePage(),
       },
       home: const SplashPage(),
       // home: ,
